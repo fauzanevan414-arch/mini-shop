@@ -6,8 +6,6 @@ import Keranjang from "./pages/Keranjang";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginForm from "./pages/formlogin";
 import RegisterForm from "./pages/formregister";
-import {lazy, Suspense} from "react";
-
 
 function App() {
     return (
