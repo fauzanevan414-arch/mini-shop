@@ -10,7 +10,6 @@ const KeranjangContext = createContext();
 export function KeranjangProvider({ children }) {
     const [item, setItem] = useState([]);
 
-    // TAMBAH PRODUK
     const tambahKeKeranjang = (produk) => {
         setItem((keranjangLama) => {
             const produkAda = keranjangLama.find(
@@ -38,14 +37,12 @@ export function KeranjangProvider({ children }) {
         });
     };
 
-    // HAPUS PRODUK
     const hapusDariKeranjang = (id) => {
         setItem((keranjangLama) =>
             keranjangLama.filter((p) => p.id !== id)
         );
     };
 
-    // UBAH JUMLAH
     const ubahJumlah = (id, jumlahBaru) => {
         if (jumlahBaru < 1) {
             return;

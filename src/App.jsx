@@ -3,6 +3,11 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import DetailProduk from "./pages/DetailProduk";
 import Keranjang from "./pages/Keranjang";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginForm from "./pages/formlogin";
+import RegisterForm from "./pages/formregister";
+import {lazy, Suspense} from "react";
+
 
 function App() {
     return (
@@ -20,8 +25,12 @@ function App() {
 
                     <Route
                         path="/keranjang"
-                        element={<Keranjang />}
+                        element={
+                        <ProtectedRoute><Keranjang /></ProtectedRoute>}
                     />
+
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/register" element={<RegisterForm />} />
 
                     <Route
                         path="*"

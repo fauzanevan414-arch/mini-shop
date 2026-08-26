@@ -10,8 +10,12 @@ function Home() {
     const [kataKunci, setKataKunci] = useState("");
     const [kategoriDipilih, setKategoriDipilih] = useState("");
 
+    // Pagination
+    const [halaman, setHalaman] = useState(1);
+    const produkPerHalaman = 6;
+
     useEffect(() => {
-    
+        // Mengambil produk
         fetch("https://fakestoreapi.com/products")
             .then((res) => res.json())
             .then((data) => {
@@ -33,6 +37,7 @@ function Home() {
                 setLoading(false);
             });
 
+        // Mengambil kategori
         fetch("https://fakestoreapi.com/products/categories")
             .then((res) => res.json())
             .then((data) => {
@@ -43,6 +48,7 @@ function Home() {
             });
     }, []);
 
+    // Filter berdasarkan pencarian + kategori
     const produkTersaring = produk.filter((p) => {
         const cocokNama = p.nama
             .toLowerCase()
@@ -55,6 +61,26 @@ function Home() {
         return cocokNama && cocokKategori;
     });
 
+    // Hitung jumlah halaman
+    const totalHalaman = Math.ceil(
+        produkTersaring.length / produkPerHalaman
+    );
+
+    // Tentukan produk yang ditampilkan pada halaman sekarang
+    const indexAwal =
+        (halaman - 1) * produkPerHalaman;
+
+    const indexAkhir =
+        indexAwal + produkPerHalaman;
+
+    const produkDitampilkan =
+        produkTersaring.slice(indexAwal, indexAkhir);
+
+    // Reset halaman ketika search atau kategori berubah
+    useEffect(() => {
+        setHalaman(1);
+    }, [kataKunci, kategoriDipilih]);
+
     if (loading) {
         return <p className="p-4">Memuat Produk...</p>;
     }
@@ -62,19 +88,24 @@ function Home() {
     return (
         <div>
 
+            {/* SEARCH DAN FILTER */}
             <div className="p-4 flex gap-2">
 
                 <input
                     type="text"
                     placeholder="Cari produk..."
                     value={kataKunci}
-                    onChange={(e) => setKataKunci(e.target.value)}
+                    onChange={(e) =>
+                        setKataKunci(e.target.value)
+                    }
                     className="border rounded px-4 py-2 flex-1"
                 />
 
                 <select
                     value={kategoriDipilih}
-                    onChange={(e) => setKategoriDipilih(e.target.value)}
+                    onChange={(e) =>
+                        setKategoriDipilih(e.target.value)
+                    }
                     className="border rounded px-4 py-2"
                 >
                     <option value="">
@@ -90,14 +121,53 @@ function Home() {
 
             </div>
 
+            {/* PRODUK */}
             <div className="grid grid-cols-3 gap-4 p-4">
-                {produkTersaring.map((p) => (
+                {produkDitampilkan.map((p) => (
                     <ProdukCard
                         key={p.id}
                         produk={p}
                     />
                 ))}
             </div>
+
+            {/* JIKA TIDAK ADA PRODUK */}
+            {produkTersaring.length === 0 && (
+                <p className="text-center p-6 text-gray-500">
+                    Produk tidak ditemukan.
+                </p>
+            )}
+
+            {/* PAGINATION */}
+            {totalHalaman > 1 && (
+                <div className="flex justify-center items-center gap-4 p-6">
+
+                    <button
+                        onClick={() =>
+                            setHalaman(halaman - 1)
+                        }
+                        disabled={halaman === 1}
+                        className="px-4 py-2 border rounded disabled:opacity-50"
+                    >
+                        Sebelumnya
+                    </button>
+
+                    <span>
+                        Halaman {halaman} dari {totalHalaman}
+                    </span>
+
+                    <button
+                        onClick={() =>
+                            setHalaman(halaman + 1)
+                        }
+                        disabled={halaman === totalHalaman}
+                        className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                    >
+                        Selanjutnya
+                    </button>
+
+                </div>
+            )}
 
         </div>
     );
