@@ -10,7 +10,7 @@ function LoginForm() {
 
     const [error, setError] = useState("");
 
-    const login = useAuth();
+    const {login} = useAuth();
     const navigate = useNavigate();
 
     function handleSubmit(e) {
