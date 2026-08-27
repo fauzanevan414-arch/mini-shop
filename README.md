@@ -1,38 +1,21 @@
 # MiniShop
 
-MiniShop merupakan aplikasi e-commerce sederhana yang dibuat menggunakan React JS. Aplikasi ini dibuat untuk menerapkan penggunaan React, React Router, Context API, Tailwind CSS, serta penggunaan API untuk mengambil data produk.
+MiniShop adalah aplikasi e-commerce sederhana yang dibuat menggunakan React JS. Project ini dibuat untuk belajar menggunakan React, React Router, Context API, Tailwind CSS, dan API.
 
 ## Fitur
 
-Beberapa fitur yang tersedia pada aplikasi MiniShop:
+* Register akun
+* Login dan Logout
+* Menampilkan produk dari Fake Store API
+* Mencari produk
+* Filter produk berdasarkan kategori
+* Melihat detail produk
+* Menambahkan produk ke keranjang
+* Mengubah jumlah produk di keranjang
+* Menghapus produk dari keranjang
+* Halaman keranjang hanya dapat diakses setelah login
 
-* **Register**
-  Pengguna dapat membuat akun menggunakan email dan password.
-
-* **Login dan Logout**
-  Pengguna dapat masuk menggunakan akun yang telah didaftarkan dan keluar dari akun.
-
-* **Menampilkan Produk**
-  Daftar produk diambil dari Fake Store API dan ditampilkan pada halaman utama.
-
-* **Pencarian Produk**
-  Pengguna dapat mencari produk berdasarkan nama produk.
-
-* **Filter Kategori**
-  Pengguna dapat menampilkan produk berdasarkan kategori yang dipilih.
-
-* **Detail Produk**
-  Pengguna dapat melihat informasi lebih lengkap mengenai suatu produk.
-
-* **Keranjang**
-  Pengguna dapat menambahkan produk ke keranjang, mengubah jumlah produk, dan menghapus produk dari keranjang.
-
-* **Protected Route**
-  Halaman keranjang hanya dapat diakses oleh pengguna yang sudah login.
-
-## Teknologi yang Digunakan
-
-Project ini menggunakan beberapa teknologi berikut:
+## Teknologi
 
 * React JS
 * Vite
@@ -41,67 +24,55 @@ Project ini menggunakan beberapa teknologi berikut:
 * Context API
 * Fake Store API
 * LocalStorage
-* Git dan GitHub
+* Git & GitHub
 * Netlify
 
 ## Instalasi
 
 ### 1. Clone Repository
 
-Clone repository dari GitHub menggunakan perintah:
-
 ```bash
 git clone https://github.com/fauzanevan414-arch/mini-shop.git
 ```
 
-Kemudian masuk ke folder project:
+Masuk ke folder project:
 
 ```bash
-cd minishop
+cd mini-shop
 ```
 
 ### 2. Install Dependency
-
-Jalankan perintah berikut untuk menginstall dependency:
 
 ```bash
 npm install
 ```
 
-### 3. Menjalankan Project
-
-Untuk menjalankan project dalam mode development:
+### 3. Jalankan Project
 
 ```bash
 npm run dev
 ```
 
-Setelah itu buka alamat yang ditampilkan pada terminal, biasanya:
+Kemudian buka alamat yang muncul di terminal, biasanya:
 
 ```text
 http://localhost:5173
 ```
 
-## Build Project
+## Build
 
-Untuk membuat versi production, jalankan:
+Untuk membuat versi production:
 
 ```bash
 npm run build
 ```
 
-Hasil build akan tersimpan di dalam folder `dist`.
-
-Untuk melihat hasil build secara lokal dapat menggunakan:
-
-```bash
-npm run preview
-```
+Hasil build akan berada di folder `dist`.
 
 ## Struktur Project
 
 ```text
-minishop/
+mini-shop/
 │
 ├── public/
 │   └── _redirects
@@ -140,77 +111,36 @@ minishop/
 └── README.md
 ```
 
-## Penjelasan Struktur
+## Penjelasan Singkat
 
-### `components`
+* **components** → berisi komponen yang digunakan dalam aplikasi.
+* **context** → berisi pengaturan login dan keranjang.
+* **hooks** → berisi custom hook untuk LocalStorage.
+* **pages** → berisi halaman utama aplikasi.
+* **App.jsx** → mengatur route atau perpindahan halaman.
+* **main.jsx** → file utama untuk menjalankan aplikasi React.
+* **index.css** → berisi CSS utama.
+* **public/_redirects** → digunakan agar routing React dapat berjalan saat di Netlify.
 
-Berisi komponen yang digunakan pada beberapa bagian aplikasi.
-
-* `Header.jsx` digunakan untuk menampilkan header dan navigasi.
-* `Layout.jsx` digunakan sebagai layout utama aplikasi.
-* `ProdukCard.jsx` digunakan untuk menampilkan kartu produk.
-* `Button.jsx` digunakan sebagai komponen tombol.
-* `Badge.jsx` digunakan untuk menampilkan label atau badge.
-* `ProtectedRoute.jsx` digunakan untuk membatasi halaman yang hanya dapat diakses setelah login.
-
-### `context`
-
-Berisi Context yang digunakan untuk mengelola data yang digunakan oleh beberapa komponen.
-
-* `AuthContext.jsx` mengatur proses register, login, logout, dan data user.
-* `KeranjangContext.jsx` mengatur data produk yang terdapat di keranjang.
-
-### `hooks`
-
-Berisi custom hook yang digunakan dalam aplikasi.
-
-* `useLocalStorage.js` digunakan untuk menyimpan dan mengambil data dari LocalStorage dengan state React.
-
-### `pages`
-
-Berisi halaman utama dari aplikasi.
-
-* `Home.jsx` menampilkan daftar produk, pencarian, dan filter kategori.
-* `DetailProduk.jsx` menampilkan informasi detail produk.
-* `Keranjang.jsx` menampilkan isi keranjang.
-* `formlogin.jsx` digunakan untuk halaman login.
-* `formregister.jsx` digunakan untuk halaman registrasi.
-
-### `App.jsx`
-
-Digunakan untuk mengatur routing atau perpindahan halaman menggunakan React Router DOM.
-
-Route yang digunakan:
+## Route
 
 ```text
-/                  → Halaman utama
-/login             → Halaman login
-/register          → Halaman register
-/produk/:id        → Detail produk
-/keranjang         → Keranjang
+/                 → Home
+/login            → Login
+/register         → Register
+/produk/:id       → Detail Produk
+/keranjang        → Keranjang
 ```
-
-### `main.jsx`
-
-Merupakan file utama yang digunakan untuk menjalankan aplikasi React dan memasang Context Provider.
-
-### `public/_redirects`
-
-Digunakan untuk mengatur routing React ketika aplikasi di-deploy menggunakan Netlify.
-
-### `index.css`
-
-Berisi CSS utama yang digunakan pada aplikasi.
 
 ## Deployment
 
-Project MiniShop di-deploy menggunakan Netlify dengan repository GitHub sebagai sumber project.
+Project ini di-deploy menggunakan Netlify.
 
-Pengaturan build yang digunakan:
+Pengaturan build:
 
 ```text
 Build command: npm run build
 Publish directory: dist
 ```
 
-Setelah repository terhubung dengan Netlify, project dapat diakses melalui URL yang diberikan oleh Netlify.
+Source code project tersedia di GitHub dan project dapat diakses melalui URL yang diberikan oleh Netlify.
