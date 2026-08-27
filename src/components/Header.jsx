@@ -12,7 +12,7 @@ function Header() {
                 <Link to="/">Beranda</Link>
                 <Link to="/Keranjang">Keranjang</Link>
 
-                <button onClick={logout}>
+                <button onClick={logout} className="px-3 py-2 #0d99fd text-white rounded hover:#0d99fd">
                     Logout
                 </button>
             </nav>
