@@ -51,7 +51,7 @@ Project ini menggunakan beberapa teknologi berikut:
 Clone repository dari GitHub menggunakan perintah:
 
 ```bash
-git clone https://github.com/username/mini-shop.git
+git clone https://github.com/fauzanevan414-arch/mini-shop.git
 ```
 
 Kemudian masuk ke folder project:
